@@ -66,7 +66,6 @@ class ObservableStore extends DuplexStream {
 
   // write from incomming stream to state
   _write (chunk, encoding, callback) {
-    console.log(`${this._label} - write:`, chunk)
     this.putState(chunk)
     callback()
   }
