@@ -1,5 +1,6 @@
 const test = require('tape')
-const pipe = require('pump')
+const streamUtils = require('mississippi')
+const pipe = streamUtils.pipe
 const ObservableStore = require('../')
 const ComposedStore = require('../lib/composed')
 

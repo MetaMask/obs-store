@@ -10,6 +10,8 @@ class ObservableStore extends DuplexStream {
       // a writer can end and we are still readable
       allowHalfOpen: true,
     })
+    // dont buffer outgoing updates
+    this.resume()
     // set label
     this._label = opts.label
     // set init state

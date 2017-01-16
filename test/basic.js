@@ -1,7 +1,12 @@
 const test = require('tape')
 const TransformStream = require('readable-stream').Transform
-const pipe = require('pump')
+const streamUtils = require('mississippi')
+const pipe = streamUtils.pipe
+const streamEach = streamUtils.each
+const writeStream = streamUtils.to
 const ObservableStore = require('../')
+
+const TEST_WAIT = 200
 
 
 test('basic test', function(t){
@@ -94,4 +99,39 @@ test('transform stream test', function(t){
     t.equal(value.data, nextState, 'storeTwo subscribed: state.data is nextState')
   }
 
+})
+
+
+test('basic - stream buffering test', function(t){
+  t.plan(2)
+  
+  const store = new ObservableStore()
+  store.putState(1)
+  store.putState(2)
+  store.putState(3)
+  store.putState(4)
+  store.putState(5)
+
+  let itemsInStream = []
+
+  let sink = writeStream.obj((value, enc, cb) => {
+    itemsInStream.push(value)
+    cb()
+  })
+
+  setTimeout(pipeStreams, TEST_WAIT)
+
+  function pipeStreams() {
+    pipe(
+      store,
+      sink
+    )
+    setTimeout(checkBuffer, TEST_WAIT)
+  }
+
+  function checkBuffer() {
+    const lastItem = itemsInStream.slice(-1)[0]
+    t.equal(lastItem, 5, 'item in stream is latest state')
+    t.equal(itemsInStream.length, 1, 'nothing extra buffered in the store stream')
+  }
 })

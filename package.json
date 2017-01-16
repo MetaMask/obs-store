@@ -12,7 +12,7 @@
     "readable-stream": "^2.2.2"
   },
   "devDependencies": {
-    "pump": "^1.0.2",
+    "mississippi": "^1.2.0",
     "tape": "^4.6.3"
   }
 }
