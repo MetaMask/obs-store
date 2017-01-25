@@ -1,8 +1,10 @@
+'use strict'
+
 const DuplexStream = require('stream').Duplex
 
 class ObservableStore extends DuplexStream {
 
-  constructor (opts = {}) {
+  constructor (initState = {}) {
     // construct as duplex stream
     super({
       // pass values not serializations
@@ -12,10 +14,7 @@ class ObservableStore extends DuplexStream {
     })
     // dont buffer outgoing updates
     this.resume()
-    // set label
-    this._label = opts.label
     // set init state
-    let initState = opts.initState
     this._state = initState
   }
 

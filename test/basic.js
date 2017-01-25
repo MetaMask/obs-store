@@ -1,3 +1,5 @@
+'use strict'
+
 const test = require('tape')
 const TransformStream = require('readable-stream').Transform
 const streamUtils = require('mississippi')
@@ -15,7 +17,7 @@ test('basic test', function(t){
   const initState = 'init'
   const nextState = 'next'
   
-  const store = new ObservableStore({ label: 'store', initState: initState })
+  const store = new ObservableStore(initState)
   store.subscribe(valueCheck)
 
   const firstState = store.getState()
@@ -36,8 +38,8 @@ test('basic stream test', function(t){
   const initState = 'init'
   const nextState = 'next'
   
-  const storeOne = new ObservableStore({ label: 'storeOne', initState: initState })
-  const storeTwo = new ObservableStore({ label: 'storeTwo' })
+  const storeOne = new ObservableStore(initState)
+  const storeTwo = new ObservableStore()
   storeTwo.once('update', (value) => {
     initValueCheck(value)
     storeTwo.once('update', nextValueCheck)
@@ -74,8 +76,8 @@ test('transform stream test', function(t){
     },
   })
   
-  const storeOne = new ObservableStore({ label: 'storeOne', initState: initState })
-  const storeTwo = new ObservableStore({ label: 'storeTwo' })
+  const storeOne = new ObservableStore(initState)
+  const storeTwo = new ObservableStore()
   storeTwo.once('update', (value) => {
     initValueCheck(value)
     storeTwo.once('update', nextValueCheck)

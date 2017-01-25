@@ -4,7 +4,7 @@
 that you can subscribe to updates on.
 
 ```js
-const store = new ObservableStore({ initState: initState })
+const store = new ObservableStore(initState)
 store.subscribe(function showValue(value) {
   console.log('saw value:', value)
 })
@@ -22,7 +22,9 @@ Each `ObservableStore` is a duplex stream.
 You can pipe new values into it and pipe its updated values out of it.
 
 ```js
-const storeOne = new ObservableStore({ initState: initState })
+const pipe = require('pump')
+
+const storeOne = new ObservableStore(initState)
 const storeTwo = new ObservableStore()
 
 pipe(
