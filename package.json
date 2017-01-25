@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "readable-stream": "^2.2.2"
+    "readable-stream": "^2.2.2",
+    "through2": "^2.0.3"
   },
   "devDependencies": {
     "mississippi": "^1.2.0",
