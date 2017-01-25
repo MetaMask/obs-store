@@ -62,6 +62,47 @@ test('basic stream test', function(t){
 
 })
 
+test('double stream test', function(t){
+  t.plan(4)
+
+  const initState = 'init'
+  const nextState = 'next'
+  
+  const storeOne = new ObservableStore(initState)
+  const storeTwo = new ObservableStore()
+  storeTwo.once('update', (initValue) => {
+    initValueCheck('storeTwo', initValue)
+    storeTwo.once('update', (nextValue) => nextValueCheck('storeTwo', nextValue))
+  })
+
+  const storeThree = new ObservableStore()
+  storeThree.once('update', (initValue) => {
+    initValueCheck('storeThree', initValue)
+    storeThree.once('update', (nextValue) => nextValueCheck('storeThree', nextValue))
+  })
+
+  pipe(
+    storeOne,
+    storeTwo
+  )
+
+  pipe(
+    storeOne,
+    storeThree
+  )
+
+  storeOne.putState(nextState)
+
+  function initValueCheck(label, value){
+    t.equal(value, initState, `${label} subscribed: state is initState`)
+  }
+
+  function nextValueCheck(label, value){
+    t.equal(value, nextState, `${label} subscribed: state is nextState`)
+  }
+
+})
+
 test('transform stream test', function(t){
   t.plan(4)
 
