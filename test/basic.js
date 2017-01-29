@@ -62,6 +62,18 @@ test('basic stream test', function(t){
 
 })
 
+test('updateState test', function(t){
+  t.plan(2)
+  
+  const storeOne = new ObservableStore({ a: true, b: false })
+
+  storeOne.updateState({ b: true })
+  const state = storeOne.getState()
+
+  t.equal(state.a, true, 'a is present')
+  t.equal(state.b, true, 'b was updated to true')
+})
+
 test('double stream test', function(t){
   t.plan(4)
 

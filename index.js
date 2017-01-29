@@ -1,5 +1,6 @@
 'use strict'
 
+const extend = require('xtend')
 const DuplexStream = require('stream').Duplex
 
 class ObservableStore extends DuplexStream {
@@ -28,6 +29,12 @@ class ObservableStore extends DuplexStream {
     this._putState(newState)
     this.emit('update', newState)
     this.push(this.getState())
+  }
+
+  updateState (partialState) {
+    const state = this.getState()
+    const newState = extend({}, state, partialState)
+    this.putState(newState)
   }
 
   // subscribe to changes

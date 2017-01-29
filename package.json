@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "readable-stream": "^2.2.2",
-    "through2": "^2.0.3"
+    "through2": "^2.0.3",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
     "mississippi": "^1.2.0",
