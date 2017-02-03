@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babelify": "^7.3.0",
     "readable-stream": "^2.2.2",
     "through2": "^2.0.3",
     "xtend": "^4.0.1"
@@ -16,5 +17,17 @@
   "devDependencies": {
     "mississippi": "^1.2.0",
     "tape": "^4.6.3"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   }
 }
