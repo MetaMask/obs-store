@@ -86,6 +86,18 @@ test('updateState non-obj onto obj', function(t){
   t.equal(state.a, undefined, 'property is not merged onto value')
 })
 
+test('updateState obj onto non-obj', function(t){
+  t.plan(2)
+  
+  const storeOne = new ObservableStore(2)
+
+  storeOne.updateState({ a: true })
+  const state = storeOne.getState()
+
+  t.equal(typeof state, 'object', 'value is wholly overwritten by object')
+  t.equal(state.a, true, 'a is present')
+})
+
 
 test('double stream', function(t){
   t.plan(4)
