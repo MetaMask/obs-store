@@ -11,7 +11,7 @@ const ObservableStore = require('../')
 const TEST_WAIT = 200
 
 
-test('basic test', function(t){
+test('basic', function(t){
   t.plan(3)
 
   const initState = 'init'
@@ -32,7 +32,7 @@ test('basic test', function(t){
 
 })
 
-test('basic stream test', function(t){
+test('basic stream', function(t){
   t.plan(2)
 
   const initState = 'init'
@@ -62,7 +62,7 @@ test('basic stream test', function(t){
 
 })
 
-test('updateState test', function(t){
+test('updateState', function(t){
   t.plan(2)
   
   const storeOne = new ObservableStore({ a: true, b: false })
@@ -74,7 +74,20 @@ test('updateState test', function(t){
   t.equal(state.b, true, 'b was updated to true')
 })
 
-test('double stream test', function(t){
+test('updateState non-obj onto obj', function(t){
+  t.plan(2)
+  
+  const storeOne = new ObservableStore({ a: true })
+
+  storeOne.updateState(2)
+  const state = storeOne.getState()
+
+  t.equal(state, 2, 'obj is wholly overwritten by value')
+  t.equal(state.a, undefined, 'property is not merged onto value')
+})
+
+
+test('double stream', function(t){
   t.plan(4)
 
   const initState = 'init'
@@ -115,7 +128,7 @@ test('double stream test', function(t){
 
 })
 
-test('transform stream test', function(t){
+test('transform stream', function(t){
   t.plan(4)
 
   const initState = 'init'
@@ -157,7 +170,7 @@ test('transform stream test', function(t){
 })
 
 
-test('basic - stream buffering test', function(t){
+test('basic - stream buffering', function(t){
   t.plan(2)
   
   const store = new ObservableStore()

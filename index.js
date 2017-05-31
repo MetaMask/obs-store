@@ -32,9 +32,15 @@ class ObservableStore extends DuplexStream {
   }
 
   updateState (partialState) {
-    const state = this.getState()
-    const newState = extend({}, state, partialState)
-    this.putState(newState)
+    // if non-null object, merge
+    if (partialState && typeof partialState === 'object') {
+      const state = this.getState()
+      const newState = Object.assign({}, state, partialState)
+      this.putState(newState)
+    // if not object, use new value
+    } else {
+      this.putState(partialState)
+    }
   }
 
   // subscribe to changes
