@@ -18,18 +18,28 @@ console.log(store.getState().hello) // "world"
 
 ### streams
 
-Each `ObservableStore` is a duplex stream.
-You can pipe new values into it and pipe its updated values out of it.
+Each `ObservableStore` can be turned into an `ObservableStoreStream`.
+An `ObservableStoreStream` is a duplex stream that you can pipe new values into it or
+pipe its updated values out of it.
+
+Special behavior: Doesnt buffer outgoing updates, writes latest state to dest on pipe.
 
 ```js
 const pipe = require('pump')
+const asStream = require('obs-store/lib/asStream')
 
 const storeOne = new ObservableStore(initState)
 const storeTwo = new ObservableStore()
 
 pipe(
-  storeOne,
+  asStream(storeOne),
   transformStream,
-  storeTwo
+  asStream(storeTwo)
 )
 ```
+
+### Changelog
+
+##### 3.0.0
+
+`ObservableStore` are no longer streams. You can create streams via `asStream`.

@@ -1,8 +1,9 @@
 'use strict'
 
 const test = require('tape')
-const storeTransform = require('../lib/transform')
 const ObservableStore = require('../')
+const storeTransform = require('../lib/transform')
+const asStream = require('../lib/asStream')
 const streamUtils = require('mississippi')
 const pipe = streamUtils.pipe
 
@@ -26,9 +27,9 @@ test('storeTransform test', function(t){
   })
 
   pipe(
-    storeOne,
+    asStream(storeOne),
     metaWrapperTransform,
-    storeTwo
+    asStream(storeTwo)
   )
 
   storeOne.putState(nextState)

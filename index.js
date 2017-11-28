@@ -1,20 +1,12 @@
 'use strict'
 
 const extend = require('xtend')
-const DuplexStream = require('stream').Duplex
+const EventEmitter = require('events')
 
-class ObservableStore extends DuplexStream {
+class ObservableStore extends EventEmitter {
 
   constructor (initState = {}) {
-    // construct as duplex stream
-    super({
-      // pass values not serializations
-      objectMode: true,
-      // a writer can end and we are still readable
-      allowHalfOpen: true,
-    })
-    // dont buffer outgoing updates
-    this.resume()
+    super()
     // set init state
     this._state = initState
   }
@@ -28,7 +20,6 @@ class ObservableStore extends DuplexStream {
   putState (newState) {
     this._putState(newState)
     this.emit('update', newState)
-    this.push(this.getState())
   }
 
   updateState (partialState) {
@@ -66,26 +57,6 @@ class ObservableStore extends DuplexStream {
   _putState (newState) {
     this._state = newState
   }
-
-  //
-  // stream implementation
-  //
-
-  // emit current state on new destination
-  pipe (dest, options) {
-    const result = DuplexStream.prototype.pipe.call(this, dest, options)
-    dest.write(this.getState())
-    return result
-  }
-
-  // write from incomming stream to state
-  _write (chunk, encoding, callback) {
-    this.putState(chunk)
-    callback()
-  }
-
-  // noop - outgoing stream is asking us if we have data we arent giving it
-  _read (size) { }
 
 }
 

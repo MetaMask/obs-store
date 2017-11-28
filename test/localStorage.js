@@ -18,7 +18,7 @@ test('localStorage - localStorage presence validation', function(t){
 test('localStorage - storageKey validation', function(t){
   t.plan(2)
 
-  global.localStorage = {}
+  global.localStorage = createLocalStorage()
 
   t.ok(global.localStorage, 'global.localStorage is defined')
 
@@ -31,7 +31,7 @@ test('localStorage - storageKey validation', function(t){
 test('localStorage - basic test', function(t){
   t.plan(2)
 
-  global.localStorage = {}
+  global.localStorage = createLocalStorage()
 
   t.ok(global.localStorage, 'global.localStorage is defined')
 
@@ -44,7 +44,7 @@ test('localStorage - basic test', function(t){
 test('localStorage - obj test', function(t){
   t.plan(2)
 
-  global.localStorage = {}
+  global.localStorage = createLocalStorage()
 
   t.ok(global.localStorage, 'global.localStorage is defined')
 
@@ -53,3 +53,11 @@ test('localStorage - obj test', function(t){
 
   t.deepEqual(store.getState(), { a: 123 }, 'store works roundtrips obj values great')
 })
+
+function createLocalStorage() {
+  const values = {}
+  const localStorage = {}
+  localStorage.getItem = (key) => values[key]
+  localStorage.setItem = (key, value) => values[key] = value
+  return localStorage
+}
