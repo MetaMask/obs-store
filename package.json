@@ -37,10 +37,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kumavis/obs-store.git"
+    "url": "git+https://github.com/MetaMask/obs-store.git"
   },
   "bugs": {
-    "url": "https://github.com/kumavis/obs-store/issues"
+    "url": "https://github.com/MetaMask/obs-store/issues"
   },
-  "homepage": "https://github.com/kumavis/obs-store#readme"
+  "homepage": "https://github.com/MetaMask/obs-store#readme"
 }
