@@ -17,7 +17,7 @@ test('basic stream', function(t){
 
   const initState = 'init'
   const nextState = 'next'
-  
+
   const storeOne = new ObservableStore(initState)
   const storeTwo = new ObservableStore()
   storeTwo.once('update', (value) => {
@@ -47,7 +47,7 @@ test('double stream', function(t){
 
   const initState = 'init'
   const nextState = 'next'
-  
+
   const storeOne = new ObservableStore(initState)
   const storeTwo = new ObservableStore()
   storeTwo.once('update', (initValue) => {
@@ -96,7 +96,7 @@ test('transform stream', function(t){
       callback(null, result)
     },
   })
-  
+
   const storeOne = new ObservableStore(initState)
   const storeTwo = new ObservableStore()
   storeTwo.once('update', (value) => {
@@ -127,7 +127,7 @@ test('transform stream', function(t){
 
 test('basic - stream buffering', function(t){
   t.plan(2)
-  
+
   const store = new ObservableStore()
   store.putState(1)
   store.putState(2)
@@ -157,4 +157,22 @@ test('basic - stream buffering', function(t){
     t.equal(lastItem, 5, 'item in stream is latest state')
     t.equal(itemsInStream.length, 1, 'nothing extra buffered in the store stream')
   }
+})
+
+test('basic - stream destroy unsubscribe', function(t){
+  t.plan(4)
+
+  const store = new ObservableStore()
+  t.equal(store.listenerCount('update'), 0)
+
+  store.subscribe(() => {})
+  t.equal(store.listenerCount('update'), 1)
+
+  const storeStream = asStream(store)
+  t.equal(store.listenerCount('update'), 2)
+
+  storeStream.destroy()
+  t.equal(store.listenerCount('update'), 1)
+
+  t.end()
 })
