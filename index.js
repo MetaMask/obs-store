@@ -1,9 +1,9 @@
 'use strict'
 
 const extend = require('xtend')
-const EventEmitter = require('events')
+const SafeEventEmitter = require('safe-event-emitter')
 
-class ObservableStore extends EventEmitter {
+class ObservableStore extends SafeEventEmitter {
 
   constructor (initState = {}) {
     super()
