@@ -16,6 +16,7 @@
     "xtend": "^4.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
     "mississippi": "^1.2.0",
     "tape": "^4.6.3"
   },
