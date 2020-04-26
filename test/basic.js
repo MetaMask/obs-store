@@ -1,35 +1,29 @@
-'use strict'
-
 const test = require('tape')
-const ObservableStore = require('../')
+const ObservableStore = require('..')
 
-const TEST_WAIT = 200
-
-
-test('basic', function(t){
+test('basic', function (t) {
   t.plan(3)
 
   const initState = 'init'
   const nextState = 'next'
-  
+
   const store = new ObservableStore(initState)
   store.subscribe(valueCheck)
 
-  const firstState = store.getState()
   t.equal(store.getState(), initState, 'state is provided initState')
-  
+
   store.putState(nextState)
   t.equal(store.getState(), nextState, 'state is nextState')
 
-  function valueCheck(value){
+  function valueCheck (value) {
     t.equal(value, nextState, 'subscribed: state is nextState')
   }
 
 })
 
-test('updateState', function(t){
+test('updateState', function (t) {
   t.plan(2)
-  
+
   const storeOne = new ObservableStore({ a: true, b: false })
 
   storeOne.updateState({ b: true })
@@ -39,9 +33,9 @@ test('updateState', function(t){
   t.equal(state.b, true, 'b was updated to true')
 })
 
-test('updateState non-obj onto obj', function(t){
+test('updateState non-obj onto obj', function (t) {
   t.plan(2)
-  
+
   const storeOne = new ObservableStore({ a: true })
 
   storeOne.updateState(2)
@@ -51,9 +45,9 @@ test('updateState non-obj onto obj', function(t){
   t.equal(state.a, undefined, 'property is not merged onto value')
 })
 
-test('updateState obj onto non-obj', function(t){
+test('updateState obj onto non-obj', function (t) {
   t.plan(2)
-  
+
   const storeOne = new ObservableStore(2)
 
   storeOne.updateState({ a: true })

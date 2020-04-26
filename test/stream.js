@@ -3,16 +3,16 @@
 const test = require('tape')
 const TransformStream = require('readable-stream').Transform
 const streamUtils = require('mississippi')
-const pipe = streamUtils.pipe
-const streamEach = streamUtils.each
+
+const { pipe } = streamUtils
 const writeStream = streamUtils.to
-const ObservableStore = require('../')
+const ObservableStore = require('..')
 const asStream = require('../lib/asStream')
 
 const TEST_WAIT = 200
 
 
-test('basic stream', function(t){
+test('basic stream', function (t) {
   t.plan(2)
 
   const initState = 'init'
@@ -27,22 +27,22 @@ test('basic stream', function(t){
 
   pipe(
     asStream(storeOne),
-    asStream(storeTwo)
+    asStream(storeTwo),
   )
 
   storeOne.putState(nextState)
 
-  function initValueCheck(value){
+  function initValueCheck (value) {
     t.equal(value, initState, 'storeTwo subscribed: state is initState')
   }
 
-  function nextValueCheck(value){
+  function nextValueCheck (value) {
     t.equal(value, nextState, 'storeTwo subscribed: state is nextState')
   }
 
 })
 
-test('double stream', function(t){
+test('double stream', function (t) {
   t.plan(4)
 
   const initState = 'init'
@@ -63,27 +63,27 @@ test('double stream', function(t){
 
   pipe(
     asStream(storeOne),
-    asStream(storeTwo)
+    asStream(storeTwo),
   )
 
   pipe(
     asStream(storeOne),
-    asStream(storeThree)
+    asStream(storeThree),
   )
 
   storeOne.putState(nextState)
 
-  function initValueCheck(label, value){
+  function initValueCheck (label, value) {
     t.equal(value, initState, `${label} subscribed: state is initState`)
   }
 
-  function nextValueCheck(label, value){
+  function nextValueCheck (label, value) {
     t.equal(value, nextState, `${label} subscribed: state is nextState`)
   }
 
 })
 
-test('transform stream', function(t){
+test('transform stream', function (t) {
   t.plan(4)
 
   const initState = 'init'
@@ -91,7 +91,7 @@ test('transform stream', function(t){
 
   const metaWrapperTransform = new TransformStream({
     objectMode: true,
-    transform (chunk, encoding, callback) {
+    transform (chunk, _encoding, callback) {
       const result = { meta: true, data: chunk }
       callback(null, result)
     },
@@ -107,17 +107,17 @@ test('transform stream', function(t){
   pipe(
     asStream(storeOne),
     metaWrapperTransform,
-    asStream(storeTwo)
+    asStream(storeTwo),
   )
 
   storeOne.putState(nextState)
 
-  function initValueCheck(value){
+  function initValueCheck (value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta')
     t.equal(value.data, initState, 'storeTwo subscribed: state.data is initState')
   }
 
-  function nextValueCheck(value){
+  function nextValueCheck (value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta')
     t.equal(value.data, nextState, 'storeTwo subscribed: state.data is nextState')
   }
@@ -125,7 +125,7 @@ test('transform stream', function(t){
 })
 
 
-test('basic - stream buffering', function(t){
+test('basic - stream buffering', function (t) {
   t.plan(2)
 
   const store = new ObservableStore()
@@ -135,37 +135,37 @@ test('basic - stream buffering', function(t){
   store.putState(4)
   store.putState(5)
 
-  let itemsInStream = []
+  const itemsInStream = []
 
-  let sink = writeStream.obj((value, enc, cb) => {
+  const sink = writeStream.obj((value, _encoding, cb) => {
     itemsInStream.push(value)
     cb()
   })
 
   setTimeout(pipeStreams, TEST_WAIT)
 
-  function pipeStreams() {
+  function pipeStreams () {
     pipe(
       asStream(store),
-      sink
+      sink,
     )
     setTimeout(checkBuffer, TEST_WAIT)
   }
 
-  function checkBuffer() {
-    const lastItem = itemsInStream.slice(-1)[0]
+  function checkBuffer () {
+    const lastItem = itemsInStream[itemsInStream.length - 1]
     t.equal(lastItem, 5, 'item in stream is latest state')
     t.equal(itemsInStream.length, 1, 'nothing extra buffered in the store stream')
   }
 })
 
-test('basic - stream destroy unsubscribe', function(t){
+test('basic - stream destroy unsubscribe', function (t) {
   t.plan(4)
 
   const store = new ObservableStore()
   t.equal(store.listenerCount('update'), 0)
 
-  store.subscribe(() => {})
+  store.subscribe(() => {}) // eslint-disable-line no-empty-function
   t.equal(store.listenerCount('update'), 1)
 
   const storeStream = asStream(store)

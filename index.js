@@ -1,9 +1,6 @@
-'use strict'
-
-const extend = require('xtend')
 const SafeEventEmitter = require('safe-event-emitter')
 
-class ObservableStore extends SafeEventEmitter {
+module.exports = class ObservableStore extends SafeEventEmitter {
 
   constructor (initState = {}) {
     super()
@@ -15,7 +12,7 @@ class ObservableStore extends SafeEventEmitter {
   getState () {
     return this._getState()
   }
-  
+
   // wrapper around internal putState
   putState (newState) {
     this._putState(newState)
@@ -26,7 +23,7 @@ class ObservableStore extends SafeEventEmitter {
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState()
-      const newState = Object.assign({}, state, partialState)
+      const newState = { ...state, ...partialState }
       this.putState(newState)
     // if not object, use new value
     } else {
@@ -57,7 +54,4 @@ class ObservableStore extends SafeEventEmitter {
   _putState (newState) {
     this._state = newState
   }
-
 }
-
-module.exports = ObservableStore
