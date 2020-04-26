@@ -16,7 +16,7 @@ store.putState({ hello: 'world' }) // "saw value: { hello: 'world' }"
 console.log(store.getState().hello) // "world"
 ```
 
-### streams
+## streams
 
 Each `ObservableStore` can be turned into an `ObservableStoreStream`.
 An `ObservableStoreStream` is a duplex stream that you can pipe new values into it or
@@ -38,8 +38,8 @@ pipe(
 )
 ```
 
-### Changelog
+## Changelog
 
-##### 3.0.0
+### 3.0.0
 
-`ObservableStore` are no longer streams. You can create streams via `asStream`.
+- `ObservableStore` are no longer streams. You can create streams via `asStream`.

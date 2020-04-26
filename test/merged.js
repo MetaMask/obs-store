@@ -1,14 +1,13 @@
 'use strict'
 
 const test = require('tape')
-const streamUtils = require('mississippi')
-const pipe = streamUtils.pipe
-const ObservableStore = require('../')
+
+const ObservableStore = require('..')
 const MergedStore = require('../lib/merged')
 
-test('MergedStore - basic', function(t){
+test('MergedStore - basic', function (t) {
   t.plan(1)
-  
+
   const childStoreOne = new ObservableStore()
   const childStoreTwo = new ObservableStore()
   const mergedStore = new MergedStore([
@@ -22,9 +21,9 @@ test('MergedStore - basic', function(t){
   t.deepEqual(mergedStore.getState(), { a: 1, b: 2 }, 'mergedStore gets state from children')
 })
 
-test('MergedStore - child initState', function(t){
+test('MergedStore - child initState', function (t) {
   t.plan(1)
-  
+
   const childStoreOne = new ObservableStore({ a: 1 })
   const childStoreTwo = new ObservableStore({ b: 2 })
   const mergedStore = new MergedStore([
@@ -35,9 +34,9 @@ test('MergedStore - child initState', function(t){
   t.deepEqual(mergedStore.getState(), { a: 1, b: 2 }, 'mergedStore gets state from children')
 })
 
-test('MergedStore - overwrite init', function(t){
+test('MergedStore - overwrite init', function (t) {
   t.plan(1)
-  
+
   const childStoreOne = new ObservableStore({ a: 1 })
   const childStoreTwo = new ObservableStore({ a: 2 })
   const mergedStore = new MergedStore([
@@ -48,9 +47,9 @@ test('MergedStore - overwrite init', function(t){
   t.deepEqual(mergedStore.getState(), { a: 2 }, 'mergedStore overwrote state correctly')
 })
 
-test('MergedStore - set no overwrite', function(t){
+test('MergedStore - set no overwrite', function (t) {
   t.plan(1)
-  
+
   const childStoreOne = new ObservableStore({ a: 1 })
   const childStoreTwo = new ObservableStore({ a: 2 })
   const mergedStore = new MergedStore([
@@ -64,9 +63,9 @@ test('MergedStore - set no overwrite', function(t){
 })
 
 
-test('MergedStore - overwrite init', function(t){
+test('MergedStore - overwrite init', function (t) {
   t.plan(1)
-  
+
   const childStoreOne = new ObservableStore({ a: 1 })
   const childStoreTwo = new ObservableStore({ a: 2 })
   const mergedStore = new MergedStore([
