@@ -62,7 +62,6 @@ test('MergedStore - set no overwrite', function (t) {
   t.deepEqual(mergedStore.getState(), { a: 2 }, 'mergedStore overwrote new value with old value')
 })
 
-
 test('MergedStore - overwrite init', function (t) {
   t.plan(1)
 

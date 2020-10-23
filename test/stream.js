@@ -11,7 +11,6 @@ const asStream = require('../lib/asStream')
 
 const TEST_WAIT = 200
 
-
 test('basic stream', function (t) {
   t.plan(2)
 
@@ -123,7 +122,6 @@ test('transform stream', function (t) {
   }
 
 })
-
 
 test('basic - stream buffering', function (t) {
   t.plan(2)
