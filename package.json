@@ -3,27 +3,33 @@
   "version": "4.0.3",
   "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates on.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "lib/*.js"
+    "lib/*.js",
+    "llib/*.d.ts"
   ],
   "scripts": {
-    "test": "tape test/**/*.js",
+    "build": "tsc --project .",
+    "test": "yarn build && tape test/**/*.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "license": "ISC",
   "dependencies": {
+    "@metamask/safe-event-emitter": "^2.0.0",
     "readable-stream": "^2.2.2",
-    "safe-event-emitter": "^1.0.1",
     "through2": "^2.0.3"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^4.0.0",
+    "@types/node": "^10.17.42",
+    "@types/through2": "^2.0.36",
     "eslint": "^7.7.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "mississippi": "^1.2.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "typescript": "^4.0.3"
   },
   "directories": {
     "lib": "lib",

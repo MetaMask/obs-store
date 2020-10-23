@@ -1,4 +1,6 @@
 
+*.d.ts
+lib/*.js
 package-lock.json
 
 # Created by https://www.gitignore.io/api/osx,node

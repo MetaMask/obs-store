@@ -1,10 +1,10 @@
 'use strict'
 
-const TransformStream = require('through2').obj
+import { obj as TransformStream } from 'through2'
 
-module.exports = transformStore
+export = transformStore
 
-function transformStore (syncTransformFn) {
+function transformStore (syncTransformFn: (s: Record<string, unknown>) => Record<string, unknown>) {
   return TransformStream((state, _encoding, cb) => {
     try {
       const newState = syncTransformFn(state)
