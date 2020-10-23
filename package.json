@@ -2,7 +2,7 @@
   "name": "obs-store",
   "version": "4.0.3",
   "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates on.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "tape test/**/*.js",
     "lint": "eslint . --ext js,json",
