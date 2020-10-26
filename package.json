@@ -3,10 +3,13 @@
   "version": "4.0.3",
   "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates on.",
   "main": "lib/index.js",
+  "files": [
+    "lib/*.js"
+  ],
   "scripts": {
     "test": "tape test/**/*.js",
-    "lint": "eslint . --ext js,json",
-    "lint:fix": "eslint . --ext js,json --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "license": "ISC",
   "dependencies": {
@@ -17,11 +20,11 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@metamask/eslint-config": "^2.1.1",
+    "@metamask/eslint-config": "^4.0.0",
     "babelify": "^10.0.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-json": "^2.1.1",
+    "eslint": "^7.7.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
     "mississippi": "^1.2.0",
     "tape": "^4.6.3"
   },

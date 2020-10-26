@@ -7,9 +7,6 @@ module.exports = {
     '@metamask/eslint-config',
     '@metamask/eslint-config/config/nodejs',
   ],
-  plugins: [
-    'json',
-  ],
   overrides: [{
     files: [
       '.eslintrc.js',

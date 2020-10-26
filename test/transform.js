@@ -8,7 +8,6 @@ const asStream = require('../lib/asStream')
 
 const { pipe } = streamUtils
 
-
 test('storeTransform test', function (t) {
   t.plan(4)
 
