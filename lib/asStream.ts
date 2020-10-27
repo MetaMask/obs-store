@@ -29,7 +29,7 @@ class ObsStoreStream extends DuplexStream {
     return result;
   }
 
-  // write from incomming stream to state
+  // write from incoming stream to state
   _write(chunk: any, encoding: string, callback: (error?: Error | null) => void): void {
     this.obsStore.putState(chunk)
     callback()

@@ -7,7 +7,7 @@ class LocalStorageStore extends ObservableStore {
   private _storageKey: string;
 
   constructor (opts: { storageKey?: string } = {}) {
-    if (!(global as any).localStorage) {
+    if (!(global as unknown as Window).localStorage) {
       throw new Error('LocalStorageStore - can\'t find localStorage.')
     }
     super()
