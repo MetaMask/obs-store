@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc --project .",
     "test": "yarn build && tape test/**/*.js",
-    "lint": "eslint .",
+    "lint": "yarn build && eslint test/*.js",
     "lint:fix": "eslint . --fix"
   },
   "license": "ISC",
