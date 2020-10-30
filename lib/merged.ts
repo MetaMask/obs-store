@@ -1,8 +1,10 @@
 'use strict'
 
-const MergedStore = require('.')
+import ObservableStore = require('.')
 
-class ComposedStore extends MergedStore {
+class MergedStore extends ObservableStore {
+
+  private _children: Array<ObservableStore>
 
   constructor (children = []) {
     super()
@@ -17,18 +19,17 @@ class ComposedStore extends MergedStore {
     this._updateWholeState()
   }
 
-  _addChild (child) {
+  _addChild (child: ObservableStore) {
     child.subscribe(() => this._updateWholeState())
   }
 
   _updateWholeState () {
     const childStates = this._children.map((child) => child.getState())
     // apply shallow merge over states
-    childStates.unshift({})
-    const state = Object.assign.apply(null, childStates)
+    const state = Object.assign({}, ...childStates)
     this.putState(state)
   }
 
 }
 
-module.exports = ComposedStore
+export = MergedStore

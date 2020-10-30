@@ -1,6 +1,8 @@
-const SafeEventEmitter = require('safe-event-emitter')
+import SafeEventEmitter from '@metamask/safe-event-emitter';
 
-module.exports = class ObservableStore extends SafeEventEmitter {
+class ObservableStore extends SafeEventEmitter {
+
+  private _state: Record<string, unknown>;
 
   constructor (initState = {}) {
     super()
@@ -14,12 +16,12 @@ module.exports = class ObservableStore extends SafeEventEmitter {
   }
 
   // wrapper around internal putState
-  putState (newState) {
+  putState (newState: Record<string, unknown>) {
     this._putState(newState)
     this.emit('update', newState)
   }
 
-  updateState (partialState) {
+  updateState (partialState: Record<string, unknown>) {
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState()
@@ -32,12 +34,12 @@ module.exports = class ObservableStore extends SafeEventEmitter {
   }
 
   // subscribe to changes
-  subscribe (handler) {
+  subscribe (handler: (s: Record<string, unknown>) => void) {
     this.on('update', handler)
   }
 
   // unsubscribe to changes
-  unsubscribe (handler) {
+  unsubscribe (handler: (s: Record<string, unknown>) => void) {
     this.removeListener('update', handler)
   }
 
@@ -51,7 +53,9 @@ module.exports = class ObservableStore extends SafeEventEmitter {
   }
 
   // write to persistence
-  _putState (newState) {
+  _putState (newState: Record<string, unknown>) {
     this._state = newState
   }
 }
+
+export = ObservableStore

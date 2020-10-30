@@ -1,10 +1,12 @@
 'use strict'
 
-const ObservableStore = require('.')
+import ObservableStore = require('.')
 
 class ComposedStore extends ObservableStore {
 
-  constructor (children) {
+  _children: Record<string, ObservableStore>;
+
+  constructor (children: Record<string, ObservableStore>) {
     super()
     // set default state
     const state = this.getState()
@@ -19,12 +21,12 @@ class ComposedStore extends ObservableStore {
     })
   }
 
-  _addChild (childKey, child) {
+  _addChild (childKey: string, child: ObservableStore) {
     const self = this
     child.subscribe(updateFromChild)
     updateFromChild(child.getState())
 
-    function updateFromChild (childValue) {
+    function updateFromChild (childValue: Record<string, unknown>) {
       const state = self.getState()
       state[childKey] = childValue
       self.putState(state)
@@ -33,4 +35,4 @@ class ComposedStore extends ObservableStore {
 
 }
 
-module.exports = ComposedStore
+export = ComposedStore
