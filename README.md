@@ -37,9 +37,3 @@ pipe(
   asStream(storeTwo)
 )
 ```
-
-## Changelog
-
-### 3.0.0
-
-- `ObservableStore` are no longer streams. You can create streams via `asStream`.
