@@ -1,5 +1,3 @@
-'use strict';
-
 import { ObservableStore } from './ObservableStore';
 
 export class LocalStorageStore extends ObservableStore {
