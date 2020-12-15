@@ -2,7 +2,7 @@ import { Duplex as DuplexStream } from 'stream';
 
 import { ObservableStore } from './ObservableStore';
 
-class StoreStream extends DuplexStream {
+class ObservableStoreStream extends DuplexStream {
 
   handler: (s: Record<string, unknown>) => void;
 
@@ -48,5 +48,5 @@ class StoreStream extends DuplexStream {
 }
 
 export function storeAsStream(obsStore: ObservableStore) {
-  return new StoreStream(obsStore);
+  return new ObservableStoreStream(obsStore);
 }
