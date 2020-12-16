@@ -1,7 +1,7 @@
 {
   "name": "@metamask/obs-store",
   "version": "1.0.0",
-  "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates on.",
+  "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates for.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -11,7 +11,8 @@
     "build": "tsc --project .",
     "test": "yarn build && tape test/**/*.js",
     "lint": "eslint . --ext ts,js,json",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "prepublishOnly": "yarn test"
   },
   "license": "ISC",
   "dependencies": {

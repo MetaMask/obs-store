@@ -1,7 +1,9 @@
 # ObservableStore
 
 `ObservableStore` is a synchronous in-memory store for a single value,
-that you can subscribe to updates on.
+that you can subscribe to updates for.
+
+Previously known as `obs-store`.
 
 ## Usage
 
@@ -23,10 +25,9 @@ console.log(store.getState().hello) // "world"
 ## Streams
 
 Each `ObservableStore` can be turned into an `ObservableStoreStream`.
-An `ObservableStoreStream` is a duplex stream that you can pipe new values into it or
-pipe its updated values out of it.
+An `ObservableStoreStream` is a duplex stream that you can pipe new values into or pipe updated values out of.
 
-Special behavior: Doesnt buffer outgoing updates, writes latest state to dest on pipe.
+Special behavior: Doesn't buffer outgoing updates, writes latest state to destination on pipe.
 
 ```js
 import { ObservableStore, storeAsStream } from '@metamask/obs-store'
