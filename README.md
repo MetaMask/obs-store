@@ -6,7 +6,7 @@ that you can subscribe to updates on.
 ## Usage
 
 ```js
-import { ObservableStore } from 'obs-store'
+import { ObservableStore } from '@metamask/obs-store'
 
 const store = new ObservableStore(initState)
 store.subscribe(function showValue(value) {
@@ -29,7 +29,7 @@ pipe its updated values out of it.
 Special behavior: Doesnt buffer outgoing updates, writes latest state to dest on pipe.
 
 ```js
-import { ObservableStore, storeAsStream } from 'obs-store'
+import { ObservableStore, storeAsStream } from '@metamask/obs-store'
 import pump from 'pump'
 
 const storeOne = new ObservableStore(initState)
