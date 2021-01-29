@@ -5,13 +5,9 @@ export class MergedStore<T extends Record<string, unknown>> extends ObservableSt
   private _children: ObservableStore<Partial<T>>[];
 
   constructor(children = []) {
-    super();
-    // set default state
-    const state = this.getState();
-    if (!state) {
-      // Typecast: Preserve existing behavior
-      this.putState({} as unknown as T);
-    }
+    // Typecast: Preserve existing behavior
+    super({} as unknown as T);
+
     this._children = children;
     // subscribe to children
     children.forEach((child) => this._addChild(child));

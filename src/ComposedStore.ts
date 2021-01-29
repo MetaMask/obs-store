@@ -7,13 +7,9 @@ export class ComposedStore<
   private _children: Record<keyof T, ObservableStore<T[keyof T]>>;
 
   constructor(children: Record<keyof T, ObservableStore<T[keyof T]>>) {
-    super();
-    // set default state
-    const state = this.getState();
-    if (!state) {
-      // Typecast: Preserve existing behavior
-      this.putState({} as unknown as T);
-    }
+    // Typecast: Preserve existing behavior
+    super({} as unknown as T);
+
     // subscribe to children
     this._children = children || {};
     Object.keys(this._children).forEach((childKey) => {

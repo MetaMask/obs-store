@@ -4,11 +4,15 @@ export class ObservableStore<T extends Record<string, unknown>> extends SafeEven
 
   private _state: T;
 
-  // Typecast: Preserve existing behavior
-  constructor(initState: T = {} as unknown as T) {
+  constructor(initState: T) {
     super();
-    // set init state
-    this._state = initState;
+
+    if (initState) {
+      this._state = initState;
+    } else {
+      // Typecast: Preserve existing behavior
+      this._state = {} as unknown as T;
+    }
   }
 
   // wrapper around internal getState
