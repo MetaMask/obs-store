@@ -1,27 +1,28 @@
 import SafeEventEmitter from '@metamask/safe-event-emitter';
 
-export class ObservableStore extends SafeEventEmitter {
+export class ObservableStore<T extends Record<string, unknown>> extends SafeEventEmitter {
 
-  private _state: Record<string, unknown>;
+  private _state: T;
 
-  constructor(initState = {}) {
+  // Typecast: Preserve existing behavior
+  constructor(initState: T = {} as unknown as T) {
     super();
     // set init state
     this._state = initState;
   }
 
   // wrapper around internal getState
-  getState() {
+  getState(): T {
     return this._getState();
   }
 
   // wrapper around internal putState
-  putState(newState: Record<string, unknown>) {
+  putState(newState: T): void {
     this._putState(newState);
     this.emit('update', newState);
   }
 
-  updateState(partialState: Record<string, unknown>) {
+  updateState(partialState: T): void {
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState();
@@ -34,12 +35,12 @@ export class ObservableStore extends SafeEventEmitter {
   }
 
   // subscribe to changes
-  subscribe(handler: (s: Record<string, unknown>) => void) {
+  subscribe(handler: (state: T) => void): void {
     this.on('update', handler);
   }
 
   // unsubscribe to changes
-  unsubscribe(handler: (s: Record<string, unknown>) => void) {
+  unsubscribe(handler: (state: T) => void): void {
     this.removeListener('update', handler);
   }
 
@@ -48,12 +49,12 @@ export class ObservableStore extends SafeEventEmitter {
   //
 
   // read from persistence
-  _getState() {
+  _getState(): T {
     return this._state;
   }
 
   // write to persistence
-  _putState(newState: Record<string, unknown>) {
+  _putState(newState: T): void {
     this._state = newState;
   }
 }
