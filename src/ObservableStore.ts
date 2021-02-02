@@ -1,6 +1,6 @@
 import SafeEventEmitter from '@metamask/safe-event-emitter';
 
-export class ObservableStore<T extends Record<string, unknown>> extends SafeEventEmitter {
+export class ObservableStore<T> extends SafeEventEmitter {
 
   private _state: T;
 

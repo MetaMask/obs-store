@@ -2,9 +2,9 @@ import { Duplex as DuplexStream } from 'stream';
 
 import { ObservableStore } from './ObservableStore';
 
-class ObservableStoreStream<T extends Record<string, unknown>> extends DuplexStream {
+class ObservableStoreStream<T> extends DuplexStream {
 
-  handler: (state: Record<string, unknown>) => void;
+  handler: (state: T) => void;
 
   obsStore: ObservableStore<T>;
 
@@ -16,7 +16,7 @@ class ObservableStoreStream<T extends Record<string, unknown>> extends DuplexStr
     // dont buffer outgoing updates
     this.resume();
     // save handler so we can unsubscribe later
-    this.handler = (state: Record<string, unknown>) => this.push(state);
+    this.handler = (state: T) => this.push(state);
     // subscribe to obsStore changes
     this.obsStore = obsStore;
     this.obsStore.subscribe(this.handler);
