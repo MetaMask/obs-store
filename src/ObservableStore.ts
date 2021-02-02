@@ -30,8 +30,7 @@ export class ObservableStore<T extends Record<string, unknown>> extends SafeEven
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState();
-      const newState = Object.assign({}, state, partialState);
-      this.putState(newState);
+      this.putState({ ...state, ...partialState });
     // if not object, use new value
     } else {
       this.putState(partialState);
@@ -53,12 +52,12 @@ export class ObservableStore<T extends Record<string, unknown>> extends SafeEven
   //
 
   // read from persistence
-  _getState(): T {
+  protected _getState(): T {
     return this._state;
   }
 
   // write to persistence
-  _putState(newState: T): void {
+  protected _putState(newState: T): void {
     this._state = newState;
   }
 }
