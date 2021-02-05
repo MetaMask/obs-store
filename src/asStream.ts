@@ -47,6 +47,6 @@ class ObservableStoreStream<T> extends DuplexStream {
   }
 }
 
-export function storeAsStream<T extends Record<string, unknown>>(obsStore: ObservableStore<T>): ObservableStoreStream<T> {
+export function storeAsStream<T>(obsStore: ObservableStore<T>): ObservableStoreStream<T> {
   return new ObservableStoreStream(obsStore);
 }
