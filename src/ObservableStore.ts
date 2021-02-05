@@ -4,15 +4,10 @@ export class ObservableStore<T> extends SafeEventEmitter {
 
   private _state: T;
 
-  constructor(initState: T) {
+  // Typecast/default: Preserve existing behavior
+  constructor(initState: T = {} as unknown as T) {
     super();
-
-    if (initState) {
-      this._state = initState;
-    } else {
-      // Typecast: Preserve existing behavior
-      this._state = {} as unknown as T;
-    }
+    this._state = initState;
   }
 
   // wrapper around internal getState
