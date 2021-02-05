@@ -8,7 +8,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc --project .",
+    "build": "rm -rf ./dist && tsc --project .",
     "test": "yarn build && tape test/**/*.js",
     "lint": "eslint . --ext ts,js,json",
     "lint:fix": "yarn lint --fix",
