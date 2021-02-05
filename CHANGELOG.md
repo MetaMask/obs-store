@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [6.0.1] - 2020-02-05
+
+### Fixed
+
+- Remove unused files by fixing build script ([#36](https://github.com/MetaMask/obs-store/pull/36))
+
 ## [6.0.0] - 2020-02-05
 
 ### Changed
@@ -29,7 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]:https://github.com/MetaMask/obs-store/compare/v6.0.0...HEAD
+[Unreleased]:https://github.com/MetaMask/obs-store/compare/v6.0.1...HEAD
+[6.0.1]:https://github.com/MetaMask/obs-store/compare/v6.0.0...v6.0.1
 [6.0.0]:https://github.com/MetaMask/obs-store/compare/v5.0.0...v6.0.0
 [5.0.0]:https://github.com/MetaMask/obs-store/tree/v4.0.3...v5.0.0
 [4.0.3]:https://github.com/MetaMask/obs-store/tree/v4.0.2...v4.0.3
