@@ -1,32 +1,31 @@
 import SafeEventEmitter from '@metamask/safe-event-emitter';
 
-export class ObservableStore extends SafeEventEmitter {
+export class ObservableStore<T> extends SafeEventEmitter {
 
-  private _state: Record<string, unknown>;
+  private _state: T;
 
-  constructor(initState = {}) {
+  // Typecast/default: Preserve existing behavior
+  constructor(initState: T = {} as unknown as T) {
     super();
-    // set init state
     this._state = initState;
   }
 
   // wrapper around internal getState
-  getState() {
+  getState(): T {
     return this._getState();
   }
 
   // wrapper around internal putState
-  putState(newState: Record<string, unknown>) {
+  putState(newState: T): void {
     this._putState(newState);
     this.emit('update', newState);
   }
 
-  updateState(partialState: Record<string, unknown>) {
+  updateState(partialState: T): void {
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState();
-      const newState = Object.assign({}, state, partialState);
-      this.putState(newState);
+      this.putState({ ...state, ...partialState });
     // if not object, use new value
     } else {
       this.putState(partialState);
@@ -34,12 +33,12 @@ export class ObservableStore extends SafeEventEmitter {
   }
 
   // subscribe to changes
-  subscribe(handler: (s: Record<string, unknown>) => void) {
+  subscribe(handler: (state: T) => void): void {
     this.on('update', handler);
   }
 
   // unsubscribe to changes
-  unsubscribe(handler: (s: Record<string, unknown>) => void) {
+  unsubscribe(handler: (state: T) => void): void {
     this.removeListener('update', handler);
   }
 
@@ -48,12 +47,12 @@ export class ObservableStore extends SafeEventEmitter {
   //
 
   // read from persistence
-  _getState() {
+  protected _getState(): T {
     return this._state;
   }
 
   // write to persistence
-  _putState(newState: Record<string, unknown>) {
+  protected _putState(newState: T): void {
     this._state = newState;
   }
 }

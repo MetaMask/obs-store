@@ -1,16 +1,15 @@
 import { ObservableStore } from './ObservableStore';
 
-export class ComposedStore extends ObservableStore {
+export class ComposedStore<
+  T extends Record<string, Record<string, unknown>>
+> extends ObservableStore<T> {
 
-  _children: Record<string, ObservableStore>;
+  private _children: Record<keyof T, ObservableStore<T[keyof T]>>;
 
-  constructor(children: Record<string, ObservableStore>) {
-    super();
-    // set default state
-    const state = this.getState();
-    if (!state) {
-      this.putState({});
-    }
+  constructor(children: Record<keyof T, ObservableStore<T[keyof T]>>) {
+    // Typecast: Preserve existing behavior
+    super({} as unknown as T);
+
     // subscribe to children
     this._children = children || {};
     Object.keys(this._children).forEach((childKey) => {
@@ -19,8 +18,8 @@ export class ComposedStore extends ObservableStore {
     });
   }
 
-  _addChild(childKey: string, child: ObservableStore) {
-    const updateFromChild = (childValue: Record<string, unknown>) => {
+  _addChild(childKey: keyof T, child: ObservableStore<T[keyof T]>) {
+    const updateFromChild = (childValue: T[keyof T]) => {
       const state = this.getState();
       state[childKey] = childValue;
       this.putState(state);

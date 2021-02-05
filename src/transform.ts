@@ -1,6 +1,6 @@
 import { obj as TransformStream } from 'through2';
 
-export function storeTransformStream(syncTransformFn: (s: Record<string, unknown>) => Record<string, unknown>) {
+export function storeTransformStream<T, U>(syncTransformFn: (state: T) => U) {
   return TransformStream((state, _encoding, cb) => {
     try {
       const newState = syncTransformFn(state);
