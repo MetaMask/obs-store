@@ -4,10 +4,14 @@ export class ObservableStore<T> extends SafeEventEmitter {
 
   private _state: T;
 
-  // Typecast/default: Preserve existing behavior
-  constructor(initState: T = {} as unknown as T) {
+  constructor(initState: T) {
     super();
-    this._state = initState;
+    if (initState) {
+      this._state = initState;
+    } else {
+      // Typecast/default state: Preserve existing behavior
+      this._state = {} as unknown as T;
+    }
   }
 
   // wrapper around internal getState
@@ -21,7 +25,7 @@ export class ObservableStore<T> extends SafeEventEmitter {
     this.emit('update', newState);
   }
 
-  updateState(partialState: T): void {
+  updateState(partialState: Partial<T>): void {
     // if non-null object, merge
     if (partialState && typeof partialState === 'object') {
       const state = this.getState();
