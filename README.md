@@ -42,3 +42,9 @@ pump(
   storeAsStream(storeTwo)
 )
 ```
+
+## Running tests
+
+```bash
+yarn test
+```

@@ -4,6 +4,9 @@
   "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates for.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "files": [
     "dist/"
   ],
