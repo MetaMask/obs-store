@@ -17,6 +17,7 @@
     "dist/"
   ],
   "scripts": {
+    "setup": "yarn install && yarn allow-scripts",
     "build": "rimraf dist && tsc --project .",
     "test": "yarn build && tape test/**/*.js",
     "lint:eslint": "eslint . --cache --ext js,ts",
@@ -30,6 +31,7 @@
     "through2": "^2.0.3"
   },
   "devDependencies": {
+    "@lavamoat/allow-scripts": "^1.0.6",
     "@metamask/eslint-config": "^7.0.1",
     "@metamask/eslint-config-typescript": "^7.0.1",
     "@types/node": "^10.17.42",
@@ -49,5 +51,10 @@
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }
