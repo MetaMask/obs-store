@@ -1,7 +1,7 @@
 'use strict';
 
+const TransformStream = require('stream').Transform;
 const test = require('tape');
-const TransformStream = require('readable-stream').Transform;
 const streamUtils = require('mississippi');
 
 const { pipe } = streamUtils;
