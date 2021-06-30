@@ -1,7 +1,8 @@
 import { ObservableStore } from './ObservableStore';
 
-export class MergedStore<T extends Record<string, unknown>> extends ObservableStore<T> {
-
+export class MergedStore<
+  T extends Record<string, unknown>,
+> extends ObservableStore<T> {
   private _children: ObservableStore<Partial<T>>[];
 
   constructor(children = []) {

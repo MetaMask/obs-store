@@ -2,6 +2,7 @@
 
 const test = require('tape');
 
+// eslint-disable-next-line import/no-unresolved
 const { ComposedStore, ObservableStore } = require('../dist');
 
 test('ComposedStore - basic', function (t) {
@@ -17,8 +18,11 @@ test('ComposedStore - basic', function (t) {
   childStoreOne.putState(1);
   childStoreTwo.putState(2);
 
-  t.deepEqual(composedStore.getState(), { one: 1, two: 2 }, 'composedStore gets state from children');
-
+  t.deepEqual(
+    composedStore.getState(),
+    { one: 1, two: 2 },
+    'composedStore gets state from children',
+  );
 });
 
 test('ComposedStore - child initState', function (t) {
@@ -31,6 +35,9 @@ test('ComposedStore - child initState', function (t) {
     two: childStoreTwo,
   });
 
-  t.deepEqual(composedStore.getState(), { one: 1, two: 2 }, 'composedStore gets state from children');
-
+  t.deepEqual(
+    composedStore.getState(),
+    { one: 1, two: 2 },
+    'composedStore gets state from children',
+  );
 });

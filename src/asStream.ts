@@ -3,7 +3,6 @@ import { Duplex as DuplexStream } from 'stream';
 import { ObservableStore } from './ObservableStore';
 
 class ObservableStoreStream<T> extends DuplexStream {
-
   handler: (state: T) => void;
 
   obsStore: ObservableStore<T>;
@@ -23,14 +22,21 @@ class ObservableStoreStream<T> extends DuplexStream {
   }
 
   // emit current state on new destination
-  pipe<U extends NodeJS.WritableStream>(dest: U, options?: { end?: boolean }): U {
+  pipe<U extends NodeJS.WritableStream>(
+    dest: U,
+    options?: { end?: boolean },
+  ): U {
     const result = super.pipe(dest, options);
     dest.write(this.obsStore.getState() as any);
     return result;
   }
 
   // write from incoming stream to state
-  _write(chunk: any, _encoding: string, callback: (error?: Error | null) => void): void {
+  _write(
+    chunk: any,
+    _encoding: string,
+    callback: (error?: Error | null) => void,
+  ): void {
     this.obsStore.putState(chunk);
     callback();
   }
@@ -47,6 +53,8 @@ class ObservableStoreStream<T> extends DuplexStream {
   }
 }
 
-export function storeAsStream<T>(obsStore: ObservableStore<T>): ObservableStoreStream<T> {
+export function storeAsStream<T>(
+  obsStore: ObservableStore<T>,
+): ObservableStoreStream<T> {
   return new ObservableStoreStream(obsStore);
 }

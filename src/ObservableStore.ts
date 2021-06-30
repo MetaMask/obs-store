@@ -1,7 +1,6 @@
 import SafeEventEmitter from '@metamask/safe-event-emitter';
 
 export class ObservableStore<T> extends SafeEventEmitter {
-
   private _state: T;
 
   constructor(initState: T) {
@@ -30,7 +29,7 @@ export class ObservableStore<T> extends SafeEventEmitter {
     if (partialState && typeof partialState === 'object') {
       const state = this.getState();
       this.putState({ ...state, ...partialState });
-    // if not object, use new value
+      // if not object, use new value
     } else {
       this.putState(partialState);
     }

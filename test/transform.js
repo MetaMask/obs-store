@@ -2,7 +2,12 @@
 
 const test = require('tape');
 const streamUtils = require('mississippi');
-const { ObservableStore, storeAsStream, storeTransformStream } = require('../dist');
+const {
+  ObservableStore,
+  storeAsStream,
+  storeTransformStream,
+  // eslint-disable-next-line import/no-unresolved
+} = require('../dist');
 
 const { pipe } = streamUtils;
 
@@ -24,22 +29,25 @@ test('storeTransformStream test', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(
-    storeAsStream(storeOne),
-    metaWrapperTransform,
-    storeAsStream(storeTwo),
-  );
+  pipe(storeAsStream(storeOne), metaWrapperTransform, storeAsStream(storeTwo));
 
   storeOne.putState(nextState);
 
   function initValueCheck(value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta');
-    t.equal(value.data, initState, 'storeTwo subscribed: state.data is initState');
+    t.equal(
+      value.data,
+      initState,
+      'storeTwo subscribed: state.data is initState',
+    );
   }
 
   function nextValueCheck(value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta');
-    t.equal(value.data, nextState, 'storeTwo subscribed: state.data is nextState');
+    t.equal(
+      value.data,
+      nextState,
+      'storeTwo subscribed: state.data is nextState',
+    );
   }
-
 });
