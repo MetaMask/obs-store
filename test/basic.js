@@ -1,5 +1,6 @@
 const test = require('tape');
 
+// eslint-disable-next-line import/no-unresolved
 const { ObservableStore } = require('../dist');
 
 test('basic', function (t) {
@@ -19,7 +20,6 @@ test('basic', function (t) {
   function valueCheck(value) {
     t.equal(value, nextState, 'subscribed: state is nextState');
   }
-
 });
 
 test('updateState', function (t) {
@@ -57,4 +57,3 @@ test('updateState obj onto non-obj', function (t) {
   t.equal(typeof state, 'object', 'value is wholly overwritten by object');
   t.equal(state.a, true, 'a is present');
 });
-

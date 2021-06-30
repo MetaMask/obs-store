@@ -1,9 +1,8 @@
 import { ObservableStore } from './ObservableStore';
 
 export class ComposedStore<
-  T extends Record<string, Record<string, unknown>>
+  T extends Record<string, Record<string, unknown>>,
 > extends ObservableStore<T> {
-
   private _children: Record<keyof T, ObservableStore<T[keyof T]>>;
 
   constructor(children: Record<keyof T, ObservableStore<T[keyof T]>>) {

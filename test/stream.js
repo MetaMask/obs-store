@@ -6,6 +6,7 @@ const streamUtils = require('mississippi');
 
 const { pipe } = streamUtils;
 const writeStream = streamUtils.to;
+// eslint-disable-next-line import/no-unresolved
 const { ObservableStore, storeAsStream } = require('../dist');
 
 const TEST_WAIT = 200;
@@ -23,10 +24,7 @@ test('basic stream', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(
-    storeAsStream(storeOne),
-    storeAsStream(storeTwo),
-  );
+  pipe(storeAsStream(storeOne), storeAsStream(storeTwo));
 
   storeOne.putState(nextState);
 
@@ -37,7 +35,6 @@ test('basic stream', function (t) {
   function nextValueCheck(value) {
     t.equal(value, nextState, 'storeTwo subscribed: state is nextState');
   }
-
 });
 
 test('double stream', function (t) {
@@ -50,24 +47,22 @@ test('double stream', function (t) {
   const storeTwo = new ObservableStore();
   storeTwo.once('update', (initValue) => {
     initValueCheck('storeTwo', initValue);
-    storeTwo.once('update', (nextValue) => nextValueCheck('storeTwo', nextValue));
+    storeTwo.once('update', (nextValue) =>
+      nextValueCheck('storeTwo', nextValue),
+    );
   });
 
   const storeThree = new ObservableStore();
   storeThree.once('update', (initValue) => {
     initValueCheck('storeThree', initValue);
-    storeThree.once('update', (nextValue) => nextValueCheck('storeThree', nextValue));
+    storeThree.once('update', (nextValue) =>
+      nextValueCheck('storeThree', nextValue),
+    );
   });
 
-  pipe(
-    storeAsStream(storeOne),
-    storeAsStream(storeTwo),
-  );
+  pipe(storeAsStream(storeOne), storeAsStream(storeTwo));
 
-  pipe(
-    storeAsStream(storeOne),
-    storeAsStream(storeThree),
-  );
+  pipe(storeAsStream(storeOne), storeAsStream(storeThree));
 
   storeOne.putState(nextState);
 
@@ -78,7 +73,6 @@ test('double stream', function (t) {
   function nextValueCheck(label, value) {
     t.equal(value, nextState, `${label} subscribed: state is nextState`);
   }
-
 });
 
 test('transform stream', function (t) {
@@ -102,24 +96,27 @@ test('transform stream', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(
-    storeAsStream(storeOne),
-    metaWrapperTransform,
-    storeAsStream(storeTwo),
-  );
+  pipe(storeAsStream(storeOne), metaWrapperTransform, storeAsStream(storeTwo));
 
   storeOne.putState(nextState);
 
   function initValueCheck(value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta');
-    t.equal(value.data, initState, 'storeTwo subscribed: state.data is initState');
+    t.equal(
+      value.data,
+      initState,
+      'storeTwo subscribed: state.data is initState',
+    );
   }
 
   function nextValueCheck(value) {
     t.equal(value.meta, true, 'storeTwo subscribed: state is wrapped in meta');
-    t.equal(value.data, nextState, 'storeTwo subscribed: state.data is nextState');
+    t.equal(
+      value.data,
+      nextState,
+      'storeTwo subscribed: state.data is nextState',
+    );
   }
-
 });
 
 test('basic - stream buffering', function (t) {
@@ -142,17 +139,18 @@ test('basic - stream buffering', function (t) {
   setTimeout(pipeStreams, TEST_WAIT);
 
   function pipeStreams() {
-    pipe(
-      storeAsStream(store),
-      sink,
-    );
+    pipe(storeAsStream(store), sink);
     setTimeout(checkBuffer, TEST_WAIT);
   }
 
   function checkBuffer() {
     const lastItem = itemsInStream[itemsInStream.length - 1];
     t.equal(lastItem, 5, 'item in stream is latest state');
-    t.equal(itemsInStream.length, 1, 'nothing extra buffered in the store stream');
+    t.equal(
+      itemsInStream.length,
+      1,
+      'nothing extra buffered in the store stream',
+    );
   }
 });
 
