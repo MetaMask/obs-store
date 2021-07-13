@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.0]
+### Uncategorized
+- Add `publishConfig` to `package.json` ([#55](https://github.com/MetaMask/obs-store/pull/55))
+- Add release automation ([#54](https://github.com/MetaMask/obs-store/pull/54))
+- Add standard Dependabot config ([#51](https://github.com/MetaMask/obs-store/pull/51))
+- Add `@metamask/auto-changelog` ([#49](https://github.com/MetaMask/obs-store/pull/49))
+- Migrate from CircleCI to GitHub Actions ([#48](https://github.com/MetaMask/obs-store/pull/48))
+- Add `@lavamoat/allow-scripts` ([#47](https://github.com/MetaMask/obs-store/pull/47))
+- Update ESLint config ([#44](https://github.com/MetaMask/obs-store/pull/44))
+- Use `rimraf` for build script ([#50](https://github.com/MetaMask/obs-store/pull/50))
+- Remove `readable-stream` ([#45](https://github.com/MetaMask/obs-store/pull/45))
+- Use standard TypeScript options ([#46](https://github.com/MetaMask/obs-store/pull/46))
+- Bump glob-parent from 5.1.1 to 5.1.2 ([#43](https://github.com/MetaMask/obs-store/pull/43))
+- Bump hosted-git-info from 2.8.8 to 2.8.9 ([#42](https://github.com/MetaMask/obs-store/pull/42))
+- Bump lodash from 4.17.19 to 4.17.21 ([#41](https://github.com/MetaMask/obs-store/pull/41))
+- Repo standardization ([#40](https://github.com/MetaMask/obs-store/pull/40))
+
 ## [6.0.2] - 2020-02-05
 ### Fixed
 - Fix `ObservableStore` constructor and `updateState` types ([#38](https://github.com/MetaMask/obs-store/pull/38))
@@ -31,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v6.0.2...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v7.0.0...HEAD
+[7.0.0]: https://github.com/MetaMask/obs-store/compare/v6.0.2...v7.0.0
 [6.0.2]: https://github.com/MetaMask/obs-store/compare/v6.0.1...v6.0.2
 [6.0.1]: https://github.com/MetaMask/obs-store/compare/v6.0.0...v6.0.1
 [6.0.0]: https://github.com/MetaMask/obs-store/compare/v5.0.0...v6.0.0

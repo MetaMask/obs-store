@@ -1,6 +1,6 @@
 {
   "name": "@metamask/obs-store",
-  "version": "6.0.2",
+  "version": "7.0.0",
   "description": "`ObservableStore` is a synchronous in-memory store for a single value, that you can subscribe to updates for.",
   "homepage": "https://github.com/MetaMask/obs-store#readme",
   "bugs": {
