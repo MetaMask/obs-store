@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0]
+### Changed
+- **BREAKING:** Allow falsy initial state ([#74](https://github.com/MetaMask/obs-store/pull/74))
+  - This fixes an accidental breaking change introduced in v6.0.2. If you're updating from a version earlier than v6.0.2, this is non-breaking.
+  - This is only breaking if you are relying on falsy initial state being replaced with an empty object.
+
 ## [7.0.0]
 ### Changed
 - **BREAKING**: Increase minimum Node.js version to v12 ([#40](https://github.com/MetaMask/obs-store/pull/40))
@@ -37,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v7.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.0.0...HEAD
+[8.0.0]: https://github.com/MetaMask/obs-store/compare/v7.0.0...v8.0.0
 [7.0.0]: https://github.com/MetaMask/obs-store/compare/v6.0.2...v7.0.0
 [6.0.2]: https://github.com/MetaMask/obs-store/compare/v6.0.1...v6.0.2
 [6.0.1]: https://github.com/MetaMask/obs-store/compare/v6.0.0...v6.0.1
