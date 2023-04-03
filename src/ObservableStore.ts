@@ -5,11 +5,11 @@ export class ObservableStore<T> extends SafeEventEmitter {
 
   constructor(initState: T) {
     super();
-    if (initState) {
-      this._state = initState;
-    } else {
+    if (initState === undefined) {
       // Typecast/default state: Preserve existing behavior
       this._state = {} as unknown as T;
+    } else {
+      this._state = initState;
     }
   }
 
