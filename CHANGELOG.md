@@ -7,17 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [8.0.0]
-### Uncategorized
-- Allow falsy initial state ([#74](https://github.com/MetaMask/obs-store/pull/74))
-- Bump json5 from 1.0.1 to 1.0.2 ([#71](https://github.com/MetaMask/obs-store/pull/71))
-- Bump ajv from 6.12.2 to 6.12.6 ([#63](https://github.com/MetaMask/obs-store/pull/63))
-- Bump minimist from 1.2.5 to 1.2.7 ([#70](https://github.com/MetaMask/obs-store/pull/70))
-- Bump minimatch from 3.0.3 to 3.1.2 ([#69](https://github.com/MetaMask/obs-store/pull/69))
-- Bump qs from 6.5.2 to 6.5.3 ([#68](https://github.com/MetaMask/obs-store/pull/68))
-- Bump tar from 6.1.4 to 6.1.11 ([#60](https://github.com/MetaMask/obs-store/pull/60))
-- Bump path-parse from 1.0.6 to 1.0.7 ([#59](https://github.com/MetaMask/obs-store/pull/59))
-- Bump @metamask/auto-changelog from 2.4.0 to 2.5.0 ([#57](https://github.com/MetaMask/obs-store/pull/57))
-- Bump tar from 6.1.0 to 6.1.4 ([#58](https://github.com/MetaMask/obs-store/pull/58))
+### Changed
+- **BREAKING:** Allow falsy initial state ([#74](https://github.com/MetaMask/obs-store/pull/74))
+  - This fixes an accidental breaking change introduced in v6.0.2. If you're updating from a version earlier than v6.0.2, this is non-breaking.
+  - This is only breaking if you are relying on falsy initial state being replaced with an empty object.
 
 ## [7.0.0]
 ### Changed
