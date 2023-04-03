@@ -22,6 +22,43 @@ test('basic', function (t) {
   }
 });
 
+test('default state', function (t) {
+  t.plan(3);
+
+  const nextState = 'next';
+
+  const store = new ObservableStore();
+  store.subscribe(valueCheck);
+
+  t.deepEqual(store.getState(), {}, 'default state of empty object is set');
+
+  store.putState(nextState);
+  t.equal(store.getState(), nextState, 'state is nextState');
+
+  function valueCheck(value) {
+    t.equal(value, nextState, 'subscribed: state is nextState');
+  }
+});
+
+test('falsy non-undefined initial state', function (t) {
+  t.plan(3);
+
+  const initState = null;
+  const nextState = 'next';
+
+  const store = new ObservableStore(initState);
+  store.subscribe(valueCheck);
+
+  t.equal(store.getState(), initState, 'null default state is set');
+
+  store.putState(nextState);
+  t.equal(store.getState(), nextState, 'state is nextState');
+
+  function valueCheck(value) {
+    t.equal(value, nextState, 'subscribed: state is nextState');
+  }
+});
+
 test('updateState', function (t) {
   t.plan(2);
 
