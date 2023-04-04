@@ -1,15 +1,6 @@
-'use strict';
-
-const test = require('tape');
-const streamUtils = require('mississippi');
-const {
-  ObservableStore,
-  storeAsStream,
-  storeTransformStream,
-  // eslint-disable-next-line import/no-unresolved
-} = require('../dist');
-
-const { pipe } = streamUtils;
+import test from 'tape';
+import { pipe } from 'mississippi';
+import { ObservableStore, storeAsStream, storeTransformStream } from '../src';
 
 test('storeTransformStream test', function (t) {
   t.plan(4);
@@ -23,6 +14,8 @@ test('storeTransformStream test', function (t) {
   });
 
   const storeOne = new ObservableStore(initState);
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const storeTwo = new ObservableStore();
   storeTwo.once('update', (value) => {
     initValueCheck(value);

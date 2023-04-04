@@ -1,13 +1,7 @@
-'use strict';
-
-const TransformStream = require('stream').Transform;
-const test = require('tape');
-const streamUtils = require('mississippi');
-
-const { pipe } = streamUtils;
-const writeStream = streamUtils.to;
-// eslint-disable-next-line import/no-unresolved
-const { ObservableStore, storeAsStream } = require('../dist');
+import { Transform as TransformStream } from 'stream';
+import test from 'tape';
+import { pipe, to as writeStream } from 'mississippi';
+import { ObservableStore, storeAsStream } from '../src';
 
 const TEST_WAIT = 200;
 
@@ -18,6 +12,8 @@ test('basic stream', function (t) {
   const nextState = 'next';
 
   const storeOne = new ObservableStore(initState);
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const storeTwo = new ObservableStore();
   storeTwo.once('update', (value) => {
     initValueCheck(value);
@@ -44,6 +40,8 @@ test('double stream', function (t) {
   const nextState = 'next';
 
   const storeOne = new ObservableStore(initState);
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const storeTwo = new ObservableStore();
   storeTwo.once('update', (initValue) => {
     initValueCheck('storeTwo', initValue);
@@ -52,6 +50,8 @@ test('double stream', function (t) {
     );
   });
 
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const storeThree = new ObservableStore();
   storeThree.once('update', (initValue) => {
     initValueCheck('storeThree', initValue);
@@ -90,6 +90,8 @@ test('transform stream', function (t) {
   });
 
   const storeOne = new ObservableStore(initState);
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const storeTwo = new ObservableStore();
   storeTwo.once('update', (value) => {
     initValueCheck(value);
@@ -122,6 +124,8 @@ test('transform stream', function (t) {
 test('basic - stream buffering', function (t) {
   t.plan(2);
 
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const store = new ObservableStore();
   store.putState(1);
   store.putState(2);
@@ -157,6 +161,8 @@ test('basic - stream buffering', function (t) {
 test('basic - stream destroy unsubscribe', function (t) {
   t.plan(4);
 
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const store = new ObservableStore();
   t.equal(store.listenerCount('update'), 0);
 

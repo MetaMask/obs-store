@@ -1,7 +1,5 @@
-const test = require('tape');
-
-// eslint-disable-next-line import/no-unresolved
-const { ObservableStore } = require('../dist');
+import test from 'tape';
+import { ObservableStore } from '../src';
 
 test('basic', function (t) {
   t.plan(3);
@@ -27,6 +25,8 @@ test('default state', function (t) {
 
   const nextState = 'next';
 
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const store = new ObservableStore();
   store.subscribe(valueCheck);
 
@@ -76,6 +76,8 @@ test('updateState non-obj onto obj', function (t) {
 
   const storeOne = new ObservableStore({ a: true });
 
+  // @ts-expect-error We're intentionally trying to update an object state with
+  // a non-object.
   storeOne.updateState(2);
   const state = storeOne.getState();
 
@@ -88,9 +90,14 @@ test('updateState obj onto non-obj', function (t) {
 
   const storeOne = new ObservableStore(2);
 
+  // @ts-expect-error We're intentionally trying to update an non-object state
+  // with an object.
   storeOne.updateState({ a: true });
   const state = storeOne.getState();
 
   t.equal(typeof state, 'object', 'value is wholly overwritten by object');
+  // @ts-expect-error The interface for `ObservableStore` does not allow
+  // changing the type of the whole state, but `updateState` overwrites the
+  // state object anyway.
   t.equal(state.a, true, 'a is present');
 });
