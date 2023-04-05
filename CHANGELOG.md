@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [8.1.0]
-### Uncategorized
-- Fix ComposedStore types to account for primitives ([#81](https://github.com/MetaMask/obs-store/pull/81))
-- Convert tests to TypeScript ([#79](https://github.com/MetaMask/obs-store/pull/79))
+### Added
+- Loosen ComposedStore type so that it can be used to compose stores that hold primitives instead of objects ([#81](https://github.com/MetaMask/obs-store/pull/81))
 
 ## [8.0.0]
 ### Changed
