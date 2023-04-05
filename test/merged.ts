@@ -1,14 +1,14 @@
-'use strict';
-
-const test = require('tape');
-
-// eslint-disable-next-line import/no-unresolved
-const { MergedStore, ObservableStore } = require('../dist');
+import test from 'tape';
+import { MergedStore, ObservableStore } from '../src';
 
 test('MergedStore - basic', function (t) {
   t.plan(1);
 
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const childStoreOne = new ObservableStore();
+  // @ts-expect-error The signature for the ObservableStore constructor makes it
+  // seem like an argument is required, but we're not passing an argument here.
   const childStoreTwo = new ObservableStore();
   const mergedStore = new MergedStore([childStoreOne, childStoreTwo]);
 
