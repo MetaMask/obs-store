@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.1.0]
+### Added
+- Loosen ComposedStore type so that it can be used to compose stores that hold primitives instead of objects ([#81](https://github.com/MetaMask/obs-store/pull/81))
+
 ## [8.0.0]
 ### Changed
 - **BREAKING:** Allow falsy initial state ([#74](https://github.com/MetaMask/obs-store/pull/74))
@@ -43,7 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.1.0...HEAD
+[8.1.0]: https://github.com/MetaMask/obs-store/compare/v8.0.0...v8.1.0
 [8.0.0]: https://github.com/MetaMask/obs-store/compare/v7.0.0...v8.0.0
 [7.0.0]: https://github.com/MetaMask/obs-store/compare/v6.0.2...v7.0.0
 [6.0.2]: https://github.com/MetaMask/obs-store/compare/v6.0.1...v6.0.2
