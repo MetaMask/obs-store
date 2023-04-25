@@ -27,7 +27,7 @@
     "prepublishOnly": "yarn test"
   },
   "dependencies": {
-    "@metamask/safe-event-emitter": "^2.0.0",
+    "@metamask/safe-event-emitter": "^3.0.0",
     "through2": "^2.0.3"
   },
   "devDependencies": {
