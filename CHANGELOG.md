@@ -7,10 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [8.1.1]
-### Uncategorized
-- Bump word-wrap from 1.2.3 to 1.2.4 ([#89](https://github.com/MetaMask/obs-store/pull/89))
-- Bump semver from 5.7.1 to 5.7.2 ([#87](https://github.com/MetaMask/obs-store/pull/87))
-- Bump @metamask/safe-event-emitter from 2.0.0 to 3.0.0 ([#85](https://github.com/MetaMask/obs-store/pull/85))
+### Changed
+- Bump `@metamask/safe-event-emitter` from `2.0.0` to `3.0.0` ([#85](https://github.com/MetaMask/obs-store/pull/85))
 
 ## [8.1.0]
 ### Added
