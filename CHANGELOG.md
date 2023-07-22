@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.1.1]
+### Uncategorized
+- Bump word-wrap from 1.2.3 to 1.2.4 ([#89](https://github.com/MetaMask/obs-store/pull/89))
+- Bump semver from 5.7.1 to 5.7.2 ([#87](https://github.com/MetaMask/obs-store/pull/87))
+- Bump @metamask/safe-event-emitter from 2.0.0 to 3.0.0 ([#85](https://github.com/MetaMask/obs-store/pull/85))
+
 ## [8.1.0]
 ### Added
 - Loosen ComposedStore type so that it can be used to compose stores that hold primitives instead of objects ([#81](https://github.com/MetaMask/obs-store/pull/81))
@@ -47,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.1.0...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.1.1...HEAD
+[8.1.1]: https://github.com/MetaMask/obs-store/compare/v8.1.0...v8.1.1
 [8.1.0]: https://github.com/MetaMask/obs-store/compare/v8.0.0...v8.1.0
 [8.0.0]: https://github.com/MetaMask/obs-store/compare/v7.0.0...v8.0.0
 [7.0.0]: https://github.com/MetaMask/obs-store/compare/v6.0.2...v7.0.0
