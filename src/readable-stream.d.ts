@@ -1,4 +1,4 @@
 // eslint-disable import/unambiguous
 declare module 'readable-stream' {
-  export { Transform, Duplex } from 'stream';
+  export { Duplex, Transform, Writable, pipeline } from 'stream';
 }

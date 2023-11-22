@@ -1,5 +1,5 @@
 import test from 'tape';
-import { pipe } from 'mississippi';
+import { pipeline } from 'readable-stream';
 import { ObservableStore, storeAsStream, storeTransformStream } from '../src';
 
 test('storeTransformStream test', function (t) {
@@ -22,7 +22,11 @@ test('storeTransformStream test', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(storeAsStream(storeOne), metaWrapperTransform, storeAsStream(storeTwo));
+  pipeline(
+    storeAsStream(storeOne),
+    metaWrapperTransform,
+    storeAsStream(storeTwo),
+  );
 
   storeOne.putState(nextState);
 
