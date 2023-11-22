@@ -144,7 +144,6 @@ test('basic - stream buffering', function (t) {
 
   const sink = new WritableStream({
     objectMode: true,
-    highWaterMark: 16,
     write: (value, _encoding, cb) => {
       itemsInStream.push(value);
       cb();
