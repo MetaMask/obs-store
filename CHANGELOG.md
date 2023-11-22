@@ -8,12 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [9.0.0]
 ### Uncategorized
-- Bump @metamask/auto-changelog from 3.4.2 to 3.4.3 ([#101](https://github.com/MetaMask/obs-store/pull/101))
-- Bump @metamask/auto-changelog from 2.5.0 to 3.4.2 ([#100](https://github.com/MetaMask/obs-store/pull/100))
-- Bump ansi-regex from 5.0.0 to 5.0.1 ([#94](https://github.com/MetaMask/obs-store/pull/94))
-- devDeps: @lavamoat/allow-scripts@1.0.6->2.3.1 ([#93](https://github.com/MetaMask/obs-store/pull/93))
-- BREAKING: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
-- ci: change runner image from ubuntu-20.04 to ubuntu-latest ([#91](https://github.com/MetaMask/obs-store/pull/91))
+- **BREAKING**: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
+- **BREAKING**: Use `readable-stream@^3.6.2` for streams ([#96](https://github.com/MetaMask/obs-store/pull/96))
 
 ## [8.1.1]
 ### Changed
