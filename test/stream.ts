@@ -1,4 +1,4 @@
-import { Transform as TransformStream } from 'stream';
+import { Transform as TransformStream } from 'readable-stream';
 import test from 'tape';
 import { pipe, to as writeStream } from 'mississippi';
 import { ObservableStore, storeAsStream } from '../src';

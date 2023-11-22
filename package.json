@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@metamask/safe-event-emitter": "^3.0.0",
-    "through2": "^2.0.3"
+    "readable-stream": "^3.6.2"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^2.3.1",
@@ -37,7 +37,6 @@
     "@metamask/eslint-config-typescript": "^7.0.1",
     "@types/node": "^10.17.42",
     "@types/tape": "^4.13.4",
-    "@types/through2": "^2.0.36",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "eslint": "^7.29.0",
