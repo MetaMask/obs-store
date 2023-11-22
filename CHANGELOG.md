@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.0.0]
+### Uncategorized
+- Bump @metamask/auto-changelog from 3.4.2 to 3.4.3 ([#101](https://github.com/MetaMask/obs-store/pull/101))
+- Bump @metamask/auto-changelog from 2.5.0 to 3.4.2 ([#100](https://github.com/MetaMask/obs-store/pull/100))
+- Bump ansi-regex from 5.0.0 to 5.0.1 ([#94](https://github.com/MetaMask/obs-store/pull/94))
+- devDeps: @lavamoat/allow-scripts@1.0.6->2.3.1 ([#93](https://github.com/MetaMask/obs-store/pull/93))
+- BREAKING: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
+- ci: change runner image from ubuntu-20.04 to ubuntu-latest ([#91](https://github.com/MetaMask/obs-store/pull/91))
+
 ## [8.1.1]
 ### Changed
 - Bump `@metamask/safe-event-emitter` from `2.0.0` to `3.0.0` ([#85](https://github.com/MetaMask/obs-store/pull/85))
@@ -51,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v8.1.1...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v9.0.0...HEAD
+[9.0.0]: https://github.com/MetaMask/obs-store/compare/v8.1.1...v9.0.0
 [8.1.1]: https://github.com/MetaMask/obs-store/compare/v8.1.0...v8.1.1
 [8.1.0]: https://github.com/MetaMask/obs-store/compare/v8.0.0...v8.1.0
 [8.0.0]: https://github.com/MetaMask/obs-store/compare/v7.0.0...v8.0.0
