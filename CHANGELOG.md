@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [9.0.0]
-### Uncategorized
+### Changed
 - **BREAKING**: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
 - **BREAKING**: Use `readable-stream@^3.6.2` for streams ([#96](https://github.com/MetaMask/obs-store/pull/96))
 
