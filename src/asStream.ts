@@ -1,4 +1,4 @@
-import { Duplex as DuplexStream } from 'stream';
+import { Duplex as DuplexStream } from 'readable-stream';
 
 import { ObservableStore } from './ObservableStore';
 

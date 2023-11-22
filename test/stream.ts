@@ -1,6 +1,9 @@
-import { Transform as TransformStream } from 'stream';
+import {
+  pipeline,
+  Transform as TransformStream,
+  Writable as WritableStream,
+} from 'readable-stream';
 import test from 'tape';
-import { pipe, to as writeStream } from 'mississippi';
 import { ObservableStore, storeAsStream } from '../src';
 
 const TEST_WAIT = 200;
@@ -20,7 +23,7 @@ test('basic stream', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(storeAsStream(storeOne), storeAsStream(storeTwo));
+  pipeline(storeAsStream(storeOne), storeAsStream(storeTwo));
 
   storeOne.putState(nextState);
 
@@ -60,9 +63,9 @@ test('double stream', function (t) {
     );
   });
 
-  pipe(storeAsStream(storeOne), storeAsStream(storeTwo));
+  pipeline(storeAsStream(storeOne), storeAsStream(storeTwo));
 
-  pipe(storeAsStream(storeOne), storeAsStream(storeThree));
+  pipeline(storeAsStream(storeOne), storeAsStream(storeThree));
 
   storeOne.putState(nextState);
 
@@ -98,7 +101,11 @@ test('transform stream', function (t) {
     storeTwo.once('update', nextValueCheck);
   });
 
-  pipe(storeAsStream(storeOne), metaWrapperTransform, storeAsStream(storeTwo));
+  pipeline(
+    storeAsStream(storeOne),
+    metaWrapperTransform,
+    storeAsStream(storeTwo),
+  );
 
   storeOne.putState(nextState);
 
@@ -135,9 +142,12 @@ test('basic - stream buffering', function (t) {
 
   const itemsInStream = [];
 
-  const sink = writeStream.obj((value, _encoding, cb) => {
-    itemsInStream.push(value);
-    cb();
+  const sink = new WritableStream({
+    objectMode: true,
+    write: (value, _encoding, cb) => {
+      itemsInStream.push(value);
+      cb();
+    },
   });
 
   setTimeout(pipeStreams, TEST_WAIT);

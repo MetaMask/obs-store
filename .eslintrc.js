@@ -12,6 +12,12 @@ module.exports = {
       files: ['*.ts'],
       extends: ['@metamask/eslint-config-typescript'],
     },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'import/unambiguous': 'off',
+      },
+    },
   ],
   ignorePatterns: ['!.eslintrc.js', 'dist/'],
 };

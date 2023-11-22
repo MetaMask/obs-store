@@ -1,14 +1,18 @@
-import { obj as TransformStream } from 'through2';
+import { Transform } from 'readable-stream';
 
 export function storeTransformStream<T, U>(syncTransformFn: (state: T) => U) {
-  return TransformStream((state, _encoding, cb) => {
-    try {
-      const newState = syncTransformFn(state);
-      cb(null, newState);
-      return undefined;
-    } catch (err) {
-      cb(err);
-      return undefined;
-    }
+  const t = new Transform({
+    objectMode: true,
+    transform: (state, _encoding, cb) => {
+      try {
+        const newState = syncTransformFn(state);
+        cb(undefined, newState);
+        return undefined;
+      } catch (err) {
+        cb(err);
+        return undefined;
+      }
+    },
   });
+  return t;
 }
