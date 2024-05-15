@@ -1,9 +1,17 @@
 import { Transform } from 'readable-stream';
+import type { TransformOptions } from 'readable-stream';
 
-export function storeTransformStream<T, U>(syncTransformFn: (state: T) => U) {
+export function storeTransformStream<T, U>(
+  syncTransformFn: (state: T) => U,
+  streamOptions: TransformOptions = {},
+) {
   const t = new Transform({
     objectMode: true,
-    transform: (state, _encoding, cb) => {
+    transform: (
+      state: T,
+      _encoding: unknown,
+      cb: (error?: Error | null, data?: U) => void,
+    ) => {
       try {
         const newState = syncTransformFn(state);
         cb(undefined, newState);
@@ -13,6 +21,7 @@ export function storeTransformStream<T, U>(syncTransformFn: (state: T) => U) {
         return undefined;
       }
     },
+    ...streamOptions,
   });
   return t;
 }
