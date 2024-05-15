@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.1.0]
+### Uncategorized
+- feat: Allow overriding default Stream options ([#110](https://github.com/MetaMask/obs-store/pull/110))
+- Bump tar from 6.1.15 to 6.2.1 ([#109](https://github.com/MetaMask/obs-store/pull/109))
+- Bump @metamask/safe-event-emitter from 3.0.0 to 3.1.1 ([#108](https://github.com/MetaMask/obs-store/pull/108))
+- Enabling MetaMask security code scanner ([#106](https://github.com/MetaMask/obs-store/pull/106))
+- Bump ip from 2.0.0 to 2.0.1 ([#105](https://github.com/MetaMask/obs-store/pull/105))
+- Bump @metamask/auto-changelog from 3.4.3 to 3.4.4 ([#104](https://github.com/MetaMask/obs-store/pull/104))
+- chore: fix changelog category for 9.0.0 ([#103](https://github.com/MetaMask/obs-store/pull/103))
+
 ## [9.0.0]
 ### Changed
 - **BREAKING**: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
@@ -56,7 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v9.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v9.1.0...HEAD
+[9.1.0]: https://github.com/MetaMask/obs-store/compare/v9.0.0...v9.1.0
 [9.0.0]: https://github.com/MetaMask/obs-store/compare/v8.1.1...v9.0.0
 [8.1.1]: https://github.com/MetaMask/obs-store/compare/v8.1.0...v8.1.1
 [8.1.0]: https://github.com/MetaMask/obs-store/compare/v8.0.0...v8.1.0
