@@ -1,4 +1,5 @@
 import { Duplex as DuplexStream } from 'readable-stream';
+import type { DuplexOptions } from 'readable-stream';
 
 import { ObservableStore } from './ObservableStore';
 
@@ -7,10 +8,11 @@ class ObservableStoreStream<T> extends DuplexStream {
 
   obsStore: ObservableStore<T>;
 
-  constructor(obsStore: ObservableStore<T>) {
+  constructor(obsStore: ObservableStore<T>, streamOptions: DuplexOptions = {}) {
     super({
       // pass values, not serializations
       objectMode: true,
+      ...streamOptions,
     });
     // dont buffer outgoing updates
     this.resume();
@@ -55,6 +57,7 @@ class ObservableStoreStream<T> extends DuplexStream {
 
 export function storeAsStream<T>(
   obsStore: ObservableStore<T>,
+  streamOptions: DuplexOptions = {},
 ): ObservableStoreStream<T> {
-  return new ObservableStoreStream(obsStore);
+  return new ObservableStoreStream(obsStore, streamOptions);
 }
