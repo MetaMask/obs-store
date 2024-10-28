@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.1.0]
+### Changed
+- Support overriding default Stream options in ObservableStoreStream constructor, storeTransformStream, and storeAsStream ([#110](https://github.com/MetaMask/obs-store/pull/110))
+
 ## [9.0.0]
 ### Changed
 - **BREAKING**: Bump minimum Node.js version to 14 ([#92](https://github.com/MetaMask/obs-store/pull/92))
@@ -56,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All exports are now named, and exposed at the main entry point.
   - Some export names have changed, but they should still be recognizable.
 
-[Unreleased]: https://github.com/MetaMask/obs-store/compare/v9.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/obs-store/compare/v9.1.0...HEAD
+[9.1.0]: https://github.com/MetaMask/obs-store/compare/v9.0.0...v9.1.0
 [9.0.0]: https://github.com/MetaMask/obs-store/compare/v8.1.1...v9.0.0
 [8.1.1]: https://github.com/MetaMask/obs-store/compare/v8.1.0...v8.1.1
 [8.1.0]: https://github.com/MetaMask/obs-store/compare/v8.0.0...v8.1.0
